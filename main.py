@@ -8,8 +8,11 @@ coffee_maker_menu = Menu()
 # coffee_maker_menu_item = MenuItem()
 choice = ""
 
+
+# Get users input.
+
 # choice = input(f"Make a drink selection {coffee_maker_menu.get_items()}.")
-while choice != coffee_maker_menu.find_drink(choice):
+while choice != coffee_maker_menu.find_drink(choice) or choice != "off" or choice != "report":
     choice = input(f"Make a drink selection {coffee_maker_menu.get_items()}.")
 
 
