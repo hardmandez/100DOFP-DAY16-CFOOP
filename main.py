@@ -5,7 +5,11 @@ from money_machine import MoneyMachine
 coffee_maker = CoffeeMaker()
 money_machine = MoneyMachine()
 coffee_maker_menu = Menu()
-# coffee_maker_menu_item = MenuItem()
+coffee_maker_item = MenuItem()
+
+payment_received = 0
+
+
 choice = ""
 machine_on = True
 
@@ -22,7 +26,23 @@ while machine_on:
         coffee_maker.report()
         money_machine.report()
     else:
-        coffee_maker_menu.find_drink(choice)
+        #Validate choice.
+        required_resources = [coffee_maker_menu.find_drink(choice)]
+        print(required_resources)
         print("Thank you for choosing.")
-        payment = money_machine.make_payment()
+        #Check resources.
+
+        #Take payment.
+        # payment_received += money_machine.process_coins()
+        # print(payment_received)
+
+        money_machine.make_payment(3)
+
+        #Process payment.
+        ##Get Cost
+        resources = coffee_maker.is_resource_sufficient(choice)
+        if resources:
+            print ("Resources available!")
+        else:
+            print ("You don't have enough resources. Call the administrator.")
 
