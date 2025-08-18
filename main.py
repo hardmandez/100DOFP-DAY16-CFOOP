@@ -25,24 +25,13 @@ while machine_on:
     elif choice == "report":
         coffee_maker.report()
         money_machine.report()
-    else:
-        #Validate choice.
-        required_resources = coffee_maker_menu.find_drink(choice)
-        print(required_resources)
-        print("Thank you for choosing.")
+    elif choice in coffee_maker_menu.get_items():
         #Check resources.
-
-        #Take payment.
-        # payment_received += money_machine.process_coins()
-        # print(payment_received)
-
-        money_machine.make_payment(3)
-
-        #Process payment.
-        ##Get Cost
-        resources = coffee_maker.is_resource_sufficient(choice)
-        if resources:
-            print ("Resources available!")
-        else:
-            print ("You don't have enough resources. Call the administrator.")
-
+        drink_order = coffee_maker_menu.find_drink(choice)
+        machine_has_resources = coffee_maker.is_resource_sufficient(drink_order)
+        if machine_has_resources:
+            payment_received = money_machine.make_payment(drink_order.cost)
+            if payment_received:
+                coffee_maker.make_coffee(drink_order)
+    else:
+        print("Invalid choice.")
