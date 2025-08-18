@@ -5,7 +5,7 @@ from money_machine import MoneyMachine
 coffee_maker = CoffeeMaker()
 money_machine = MoneyMachine()
 coffee_maker_menu = Menu()
-coffee_maker_item = MenuItem()
+# coffee_maker_item = MenuItem()
 
 payment_received = 0
 
@@ -27,7 +27,7 @@ while machine_on:
         money_machine.report()
     else:
         #Validate choice.
-        required_resources = [coffee_maker_menu.find_drink(choice)]
+        required_resources = coffee_maker_menu.find_drink(choice)
         print(required_resources)
         print("Thank you for choosing.")
         #Check resources.
